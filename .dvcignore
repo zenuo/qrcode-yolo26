@@ -1,0 +1,7 @@
+# X-AnyLabeling 的标注 json 不进 DVC（以 dataset/labels/*.txt 为准）
+*.json
+# 误放进数据目录的网页
+*.html
+# X-AnyLabeling 在数据目录里生成的：EXIF 处理前的原图备份、删除的图片
+x-anylabeling-exif-backup/
+_delete_/

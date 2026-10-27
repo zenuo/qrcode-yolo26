@@ -1,0 +1,5 @@
+outs:
+- md5: 406e6a7def8ecf0a2e6e399215859fd2
+  size: 118405403
+  hash: md5
+  path: qrcode_yolo26x_v2.pt

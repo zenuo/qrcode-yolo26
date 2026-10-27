@@ -1,0 +1,6 @@
+outs:
+- md5: f34c9b22c2f0779806364db6d830dee5.dir
+  size: 1394300
+  nfiles: 108
+  hash: md5
+  path: logos

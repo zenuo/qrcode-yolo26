@@ -1,0 +1,6 @@
+outs:
+- md5: bd2b588def84ddcafe58f6d71455983a.dir
+  size: 7740812
+  nfiles: 149
+  hash: md5
+  path: stamps

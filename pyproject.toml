@@ -1,0 +1,24 @@
+[project]
+name = "qrcode-variants"
+version = "0.1.0"
+description = "微信小程序码 / 抖音码 / 支付宝码 YOLO26 检测数据集"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "opencv-python-headless",
+  "pillow",
+  "pyyaml",
+  "requests",
+  "ddgs",
+  "pymupdf",
+  "imgaug==0.4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+train = ["ultralytics"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

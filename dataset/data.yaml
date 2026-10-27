@@ -1,0 +1,11 @@
+path: .
+train: images/train
+val: images/val
+test: images/test
+nc: 5
+names:
+  0: alipay
+  1: wechat
+  2: douyin
+  3: barcode
+  4: qrcode

@@ -1,0 +1,23 @@
+dataset/
+  data.yaml
+  images/
+    train/
+    val/
+  labels/
+    train/
+    val/
+raw/
+  seeds/
+    alipay.png
+    wechat_miniprogram.png
+    douyin.png
+  logos/                   # 品牌 / 网站 / App 圆形 Logo
+  negatives/               # 负样本，空 YOLO 标签
+  crawled/
+    accepted/
+    sources.jsonl
+src/qrcode_variants/
+scripts/
+  build_dataset.py
+  train_yolo26.py
+tests/

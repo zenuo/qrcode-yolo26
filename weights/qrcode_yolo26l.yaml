@@ -1,0 +1,14 @@
+type: yolo26
+name: qrcode_yolo26x
+provider: Ultralytics
+display_name: QRCode YOLO26x
+model_path: qrcode_yolo26x.onnx
+engine: ort
+conf_threshold: 0.25
+max_det: 300
+classes:
+  - alipay
+  - wechat
+  - douyin
+  - barcode
+  - qrcode

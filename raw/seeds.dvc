@@ -1,0 +1,6 @@
+outs:
+- md5: 7d78a1b261844589badc471aca9af5cb.dir
+  size: 2110401
+  nfiles: 119
+  hash: md5
+  path: seeds

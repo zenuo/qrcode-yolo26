@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>opencv-yolo26-demo</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.class>com.example.yolo.App</main.class>
+        <javacpp.platform>linux-x86_64</javacpp.platform>
+        <javacpp.version>1.5.14</javacpp.version>
+        <opencv.version>4.14.0-${javacpp.version}</opencv.version>
+        <openblas.version>0.3.34-${javacpp.version}</openblas.version>
+    </properties>
+
+    <dependencies>
+        <!--
+          OpenCV 的 Java 绑定 + 各平台 native 库，由 bytedeco 打包。
+          YOLO26 端到端模型需要 TopK 等算子，需 OpenCV >= 4.10（openpnp 版本最高只到 4.9）。
+          这里使用 bytedeco 自身的 Java API (org.bytedeco.opencv.*)，只按需加载 core/imgproc/imgcodecs/dnn 模块，
+          无需 GTK 等桌面依赖，可在无图形界面的服务器上运行。
+          这里不用 opencv-platform（会带上所有平台的 native 库），只引入 linux-x86_64 的 native jar。
+          Java API jar（无 classifier）及其依赖 javacpp/openblas 由 opencv 传递引入。
+        -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${opencv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${opencv.version}</version>
+            <classifier>${javacpp.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>openblas</artifactId>
+            <version>${openblas.version}</version>
+            <classifier>${javacpp.platform}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>${javacpp.version}</version>
+            <classifier>${javacpp.platform}</classifier>
+        </dependency>
+
+        <!--
+          ONNX Runtime：OrtYoloDetector 使用，支持动态尺寸输入（OpenCV DNN 4.x 不支持）。
+          jar 自带各平台 native 库（约 51MB）。
+        -->
+        <dependency>
+            <groupId>com.microsoft.onnxruntime</groupId>
+            <artifactId>onnxruntime</artifactId>
+            <version>1.31.0</version>
+        </dependency>
+
+        <!-- OpenCvYoloDetectorPool 使用的对象池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${main.class}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <mainClass>${main.class}</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,6 @@
+outs:
+- md5: 8b62740223b1f3ece2643aeec856e00f.dir
+  size: 7669433
+  nfiles: 63
+  hash: md5
+  path: negatives

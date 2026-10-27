@@ -1,0 +1,6 @@
+outs:
+- md5: b08524fe4108cd4191f74e25e5103e5e.dir
+  size: 768176
+  nfiles: 11
+  hash: md5
+  path: crawled

@@ -1,0 +1,6 @@
+outs:
+- md5: 48aec82fc5faa5d9606fcf71044253fc.dir
+  size: 154849599
+  nfiles: 112
+  hash: md5
+  path: backgrounds

@@ -1,0 +1,30 @@
+# ---- Python / 环境 ----
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+.python-version
+
+# ---- 训练与导出产物（可由代码重新生成）----
+runs/
+build/
+*.cache
+data.resolved.yaml
+*.onnx
+*.engine
+# 权重一律不进 git；要保留的发布模型用 DVC 管理（weights/*.pt.dvc 进 git）
+*.pt
+
+# ---- 数据：图片由 DVC 管理（dataset/images.dvc 进 git），标签 / data.yaml / classes.txt 进 git ----
+# X-AnyLabeling 的标注 json 与 labels/*.txt 内容重复，以导出的 txt 为准
+dataset/**/*.json
+dataset/previews/
+
+# ---- raw：可重新生成或仅本地使用的中间产物 ----
+raw/crawled/rejected/
+raw/crawled/accepted/
+raw/prelabel/
+raw/synthetic_hard/
+raw/synthetic_zoomout/
+raw/data_20261016/
+raw/relabel_20261024/
